@@ -1,0 +1,53 @@
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+def insert(root, value):
+    if root is None:
+        return TreeNode(value)
+    if value < root.value:
+        root.left = insert(root.left, value)
+    else:
+        root.right = insert(root.right, value)
+    return root
+
+def find_max_and_second_max(root):
+    if root is None:
+        return None, None
+    
+    # Ищем максимальный элемент и его родителя
+    parent = None
+    current = root
+    
+    while current.right is not None:
+        parent = current
+        current = current.right
+    
+    max_element = current.value
+    
+
+    if current.left is not None:
+
+        second_max = current.left
+        while second_max.right is not None:
+            second_max = second_max.right
+        return max_element, second_max.value
+    else:
+
+        if parent is not None:
+            return max_element, parent.value
+        else:
+            return max_element, None
+
+numbers = list(map(int, input().split()))
+root = None
+
+for number in numbers:
+    if number == 0:
+        break
+    root = insert(root, number)
+
+max_element, second_max = find_max_and_second_max(root)
+print(second_max)
