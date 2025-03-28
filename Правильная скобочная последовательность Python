@@ -1,0 +1,33 @@
+import sys
+
+
+def main():
+    a=["(","[",")","]"]
+    pos=list(input())
+    flag=1
+    i=0
+    if (len(pos)%2==0):
+        while len(pos)!=0 and (flag==1):
+            if (pos[i]=="(" and pos[i+1]==")"):
+                pos.pop(i)
+                pos.pop(i)
+            elif (pos[i]=="[" and pos[i+1]=="]"):
+                pos.pop(i)
+                pos.pop(i)
+            elif (pos[i]=="{" and pos[i+1]=="}"):
+                pos.pop(i)
+                pos.pop(i)
+            else:
+                flag=0
+    else:
+        flag=0
+
+    if flag==1:
+        print("yes")
+    else:
+        print("no")
+
+
+
+if __name__ == '__main__':
+    main()
